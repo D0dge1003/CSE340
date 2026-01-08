@@ -1,6 +1,326 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+/* ******************************************
+ * CSE Motors Stylesheet
+ * Strategy: Mobile First
+ * ****************************************** */
+
+:root {
+  --primary-color: #003366;
+  --secondary-color: #e0e0e0;
+  --accent-color: #cc0000;
+  --text-color: #333;
+  --white: #ffffff;
+  --cyan: #00bcd4;
+  --dark-bg: #222;
+  --light-cyan: #e0f7fa;
+  --blue-text: #0099cc;
+}
+
+/* Reset and Base Styles */
+* {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+  background-image: url('../images/site/checkerboard.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* WRAPPER */
+#wrapper {
+  margin: 32px auto 0 auto;
+  background-color: var(--white);
+  max-width: 700px;
+  border: 5px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.15);
+  padding-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+/* HEADER */
+header {
+  background: var(--white);
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  border-bottom: 3px solid var(--cyan);
+}
+
+header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.siteName {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+}
+
+header a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+header a:hover {
+  color: var(--blue-text);
+}
+
+/* NAVIGATION */
+nav {
+  background: var(--dark-bg);
+  padding: 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.7rem 0;
+  margin: 0;
+}
+
+nav ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background: var(--accent-color);
+}
+
+/* MAIN CONTENT */
+main {
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+main h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+footer {
+  text-align: left;
+  padding: 0.8rem 1.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* --- Custom Home Page Styles --- */
+.delorean-section {
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.delorean-info {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 6px;
+  max-width: 280px;
+  z-index: 10;
+}
+
+.delorean-info span {
+  display: block;
+  color: var(--blue-text);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.delorean-info ul {
+  list-style: none;
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.delorean-info ul li {
+  color: var(--blue-text);
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--blue-text);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.cta-btn:hover {
+  background: #005577;
+}
+
+.delorean-section img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: var(--white);
+}
+
+/* UPGRADES AND REVIEWS SECTION */
+.upgrades-reviews {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.upgrades {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.upgrades h3 {
+  grid-column: 1 / -1;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.upgrade-item {
+  background: var(--light-cyan);
+  border: 2px solid var(--cyan);
+  border-radius: 6px;
+  padding: 0.7rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  transition: box-shadow 0.2s;
+}
+
+.upgrade-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+}
+
+.upgrade-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: var(--white);
+  padding: 2px;
+}
+
+.upgrade-item a {
+  color: var(--blue-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  transition: color 0.2s;
+}
+
+.upgrade-item a:hover {
+  color: #005577;
+  text-decoration: underline;
+}
+
+.reviews {
+  flex: 1;
+}
+
+.reviews h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--text-color);
+}
+
+.reviews ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.reviews ul li {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #wrapper {
+    max-width: 90%;
+    margin-top: 16px;
+  }
+  
+  .delorean-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .upgrades-reviews {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  nav ul {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 }
