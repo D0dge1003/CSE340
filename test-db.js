@@ -1,39 +1,47 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-console.log('Attempting to connect to database...');
-console.log('Database URL protocol:', process.env.DATABASE_URL?.split(':')[0]);
+const passwords = ['4DOiYeGhsXj68XQ3TvA8LURdycmoh8rU'];
+const hosts = [
+    'dpg-d5l61am3jp1c7393ggug-a.singapore-postgres.render.com', // lowercase L
+    'dpg-d5161am3jp1c7393ggug-a.singapore-postgres.render.com', // number 1
+    'dpg-d5dn6h8gjchc73dq5fpg-a.singapore-postgres.render.com'  // from previous error
+];
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+async function tryConnect(host) {
+    console.log(`\nTesting host: ${host}`);
+    const connectionString = `postgresql://demo345:4DOiYeGhsXj68XQ3TvA8LURdycmoh8rU@${host}/demo345_ud67`;
+    const pool = new Pool({
+        connectionString,
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 5000
+    });
 
-async function testConnection() {
     try {
-        console.log('Connecting to pool...');
         const client = await pool.connect();
-        console.log('✅ Pool connection successful!');
-
-        const result = await client.query('SELECT NOW()');
-        console.log('Current time from database:', result.rows[0]);
-
-        const classifications = await client.query('SELECT * FROM classification');
-        console.log('✅ Classifications query successful! Count:', classifications.rows.length);
-
+        console.log(`✅ SUCCESS with host: ${host}`);
+        const res = await client.query('SELECT NOW()');
+        console.log('Time:', res.rows[0]);
         client.release();
         await pool.end();
-        process.exit(0);
-    } catch (error) {
-        console.error('❌ Database connection failed!');
-        console.error('Error Code:', error.code);
-        console.error('Error Message:', error.message);
-        if (error.detail) console.error('Error Detail:', error.detail);
-        if (error.stack) console.error('Stack Trace:', error.stack);
-        process.exit(1);
+        return true;
+    } catch (err) {
+        console.log(`❌ FAILED with host: ${host} - ${err.message}`);
+        await pool.end();
+        return false;
     }
 }
 
-testConnection();
+async function run() {
+    for (const host of hosts) {
+        if (await tryConnect(host)) {
+            console.log('\n--- FOUND WORKING HOST ---');
+            console.log(`Update your .env to use: ${host}`);
+            process.exit(0);
+        }
+    }
+    console.log('\nAll attempts failed.');
+    process.exit(1);
+}
+
+run();
