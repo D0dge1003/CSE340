@@ -34,7 +34,7 @@ async function addClassification(req, res) {
 
     const addResult = await inventoryModel.addClassification(classification_name)
 
-    if (addResult) {
+    if (addResult.rowCount) {
         req.flash(
             "notice",
             `The ${classification_name} classification was successfully added.`
@@ -101,7 +101,7 @@ async function addInventory(req, res) {
         classification_id
     )
 
-    if (addResult) {
+    if (addResult.rowCount) {
         req.flash(
             "notice",
             `The ${inv_make} ${inv_model} was successfully added.`
