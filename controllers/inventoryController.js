@@ -91,14 +91,14 @@ async function addInventory(req, res) {
     const addResult = await inventoryModel.addInventory(
         inv_make,
         inv_model,
-        inv_year,
+        parseInt(inv_year),
         inv_description,
         inv_image,
         inv_thumbnail,
-        inv_price,
-        inv_miles,
+        parseFloat(inv_price),
+        parseInt(inv_miles),
         inv_color,
-        classification_id
+        parseInt(classification_id)
     )
 
     if (addResult.rowCount) {
