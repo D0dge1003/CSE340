@@ -5,7 +5,7 @@ require('dotenv').config();
 const errorHandler = require('./middleware/errorHandler');
 const utilities = require('./utilities');
 const session = require("express-session")
-const pool = require('./database/')
+const pool = require('./database/database')
 const bodyParser = require("body-parser")
 
 const app = express();
