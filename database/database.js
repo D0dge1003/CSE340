@@ -15,18 +15,11 @@ if (process.env.NODE_ENV == "development") {
 } else {
     pool = new Pool({
         connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false,
-        },
-        // Production stability settings
-        max: 10,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 10000,
-        keepAlive: true,
+        ssl: true, // Render recommends this for production
     })
 }
 
-// Added error handling for the pool to log issues in production
+// Added error handling for the pool
 pool.on('error', (err, client) => {
     console.error('Unexpected error on idle database client', err)
 })
