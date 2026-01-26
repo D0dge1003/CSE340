@@ -22,7 +22,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
-    pool,
+    pool: pool.pool,
   }),
   secret: process.env.SESSION_SECRET,
   resave: true,
