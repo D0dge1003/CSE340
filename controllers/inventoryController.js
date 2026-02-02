@@ -6,9 +6,11 @@ const inventoryModel = require("../models/inventoryModel")
  * ************************** */
 async function buildManagement(req, res, next) {
     let nav = await utilities.buildClassificationList()
+    const classificationSelect = await utilities.buildClassificationSelect()
     res.render("inventory/management", {
         title: "Inventory Management",
         nav,
+        classificationSelect,
         errors: null,
     })
 }

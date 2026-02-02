@@ -7,8 +7,11 @@ const utilities = require('./utilities');
 const session = require("express-session")
 const pool = require('./database/database')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 const app = express();
+
+app.use(cookieParser())
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
@@ -39,6 +42,7 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(utilities.checkJWTToken)
 
 app.use(express.static(path.join(__dirname, "public")));
 

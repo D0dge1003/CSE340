@@ -12,3 +12,12 @@
                     <a href="/inv/add-classification">Add New Classification</a>
                     <a href="/inv/add-inventory">Add New Inventory</a>
                 </div>
+
+                <h2>Manage Inventory</h2>
+                <p>Select a classification to see the inventory items.</p>
+                <%- classificationSelect %>
+
+                    <table id="inventoryDisplay"></table>
+                    <noscript>JavaScript must be enabled to manage inventory.</noscript>
+
+                    <script src="/js/inventory.js"></script>
