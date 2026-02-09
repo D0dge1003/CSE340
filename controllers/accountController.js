@@ -111,6 +111,7 @@ async function accountLogin(req, res) {
             })
         }
     } catch (error) {
+        console.error("Login Error:", error)
         throw new Error('Access Forbidden')
     }
 }
