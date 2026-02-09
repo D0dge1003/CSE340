@@ -22,7 +22,7 @@ async function getAccountByEmail(account_email) {
             [account_email])
         return result.rows[0]
     } catch (error) {
-        return new Error("No matching email found")
+        throw new Error("No matching email found")
     }
 }
 

@@ -59,6 +59,10 @@ app.use('/account', accountRoute)
 const errorRoute = require('./routes/errorRoute');
 app.use(errorRoute);
 
+const wishlistRoute = require('./routes/wishlistRoute')
+app.use('/wishlist', wishlistRoute)
+
+
 app.get("/", async (req, res, next) => {
   try {
     const nav = await utilities.buildClassificationList();

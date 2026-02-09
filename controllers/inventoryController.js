@@ -168,6 +168,9 @@ async function buildByClassificationId(req, res, next) {
 async function buildByInventoryId(req, res, next) {
     const inv_id = req.params.invId;
     const vehicle = await inventoryModel.getInventoryById(inv_id);
+    if (vehicle) {
+        vehicle.loggedin = res.locals.loggedin;
+    }
     const html = utilities.buildVehicleDetailHTML(vehicle);
     let nav = await utilities.buildClassificationList();
     const title = vehicle ? `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}` : "Vehicle Not Found";
@@ -175,7 +178,7 @@ async function buildByInventoryId(req, res, next) {
     res.render("./inventory/detail", {
         title: title,
         nav,
-        html,
+        vehicleHTML: html,
     });
 }
 

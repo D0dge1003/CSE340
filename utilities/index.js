@@ -69,6 +69,13 @@ Util.buildVehicleDetailHTML = function (vehicle) {
     html += '<p class="vehicle-mileage"><strong>Mileage:</strong> ' + formatMileage(vehicle.inv_miles) + ' miles</p>';
     html += '<p class="vehicle-color"><strong>Color:</strong> ' + vehicle.inv_color + '</p>';
     html += '<p class="vehicle-description">' + vehicle.inv_description + '</p>';
+    if (vehicle.loggedin) {
+        html += '<form action="/wishlist/add" method="post" class="wishlist-form">';
+        html += '<input type="hidden" name="inv_id" value="' + vehicle.inv_id + '">';
+        html += '<button type="submit" class="wishlist-btn">Add to Wishlist</button>';
+        html += '</form>';
+    }
+
     html += '</div>';
     html += '</div>';
 
